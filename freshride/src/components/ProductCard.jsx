@@ -1,7 +1,8 @@
+import { Link } from 'react-router-dom'
 import './ProductCard.css'
 
 function ProductCard({ product, onAddToCart }) {
-  const { name, price, image, description } = product
+  const { id, name, price, image, description } = product
 
   const formattedPrice = new Intl.NumberFormat('en-US', {
     style: 'currency',
@@ -10,10 +11,14 @@ function ProductCard({ product, onAddToCart }) {
 
   return (
     <article className="product-card">
-      <img className="product-image" src={image} alt={`${name} car air freshener`} />
+      <Link to={`/products/${id}`}>
+        <img className="product-image" src={image} alt={`${name} car air freshener`} />
+      </Link>
       <div className="product-details">
         <p className="product-type">Vent clip fragrance</p>
-        <h3 className="product-name">{name}</h3>
+        <h3 className="product-name">
+          <Link to={`/products/${id}`}>{name}</Link>
+        </h3>
         <p className="product-description">{description}</p>
         <div className="product-footer">
           <p className="product-price">{formattedPrice}</p>
